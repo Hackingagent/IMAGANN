@@ -326,6 +326,8 @@ footer {
   animation: marquee 10s linear forwards;
 }
 
+
+
 @keyframes marquee {
   0% {
     transform: translateX(100%);

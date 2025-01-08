@@ -1,3 +1,4 @@
+// App.js
 import React from 'react';
 import Header from './components/Header';
 import Footer from './components/Footer';
@@ -6,6 +7,8 @@ import Features from './components/Features';
 import AnnotationPlatform from './components/AnnotationPlatform';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import ProjectForm from './components/ProjectForm';
+import AuthForm from './components/AuthForm';
+import ProtectedRoute from './components/ProtectedRoute';
 
 function App() {
   return (
@@ -18,8 +21,23 @@ function App() {
             <Features />
           </>
         } />
-        <Route path="/annotation-platform" element={<AnnotationPlatform />} />
-        <Route path="/project-form" element={<ProjectForm />} /> {/* Additional Route */}
+        <Route path="/authentication" element={<AuthForm />}/>
+        <Route
+          path="/annotation-platform"
+          element={
+            <ProtectedRoute>
+              <AnnotationPlatform />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/project-form"
+          element={
+            <ProtectedRoute>
+              <ProjectForm />
+            </ProtectedRoute>
+          }
+        />
       </Routes>
       <Footer />
     </Router>

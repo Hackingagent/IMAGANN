@@ -1,5 +1,6 @@
 import React from 'react';
 import '../App.css';
+import LogoutButton from './LogoutButton';
 
 function Header() {
     return (
@@ -16,6 +17,8 @@ function Header() {
                     <li className="nav-item">
                         <a href="/contact" className="nav-link">Contact</a>
                     </li>
+                    {/* ... */}
+                    <LogoutButton />
                 </ul>
             </nav>
         </header>

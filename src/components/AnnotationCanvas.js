@@ -157,7 +157,7 @@ const AnnotationCanvas = ({ image, labels, annotations, onAddAnnotation, onDelet
               zIndex: 2,
             }}
           >
-            <span style={{ color: 'black', zIndex: 1 }}>{box.label}</span>
+            <span style={{ color: 'red', zIndex: 1 }}>{box.label}</span>
             <button 
               onClick={() => handleDelete(index)} 
               style={{ 

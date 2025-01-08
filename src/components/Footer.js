@@ -26,15 +26,21 @@ function Footer() {
             }}>
                 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', marginRight: '20px'}}>
                     <h4 style={{ margin: '0', lineHeight: '1.6' }}>Members:</h4>
-                    <p style={{ margin: '0', lineHeight: '1.6' }}>ABONWI NEVIL SUH</p>
-                    <p style={{ margin: '0', lineHeight: '1.6' }}>ALEMNGU TERENCE NGULEFAC</p>
+                    <p style={{ margin: '0', lineHeight: '1.6' }}><span>UBa22PB002:</span> ABONWI NEVIL SUH</p>
+                    <p style={{ margin: '0', lineHeight: '1.6' }}><span>UBa22PB004:</span>ALEMNGU TERENCE NGULEFAC</p>
+                    <p style={{ margin: '0', lineHeight: '1.6' }}><span>UBa22PH001:</span>ACHOH COLLINS NDIWUN</p>
+                    <p style={{ margin: '0', lineHeight: '1.6' }}><span>UBa22PH004:</span>ALACHE RUTH</p>
+                    <p style={{ margin: '0', lineHeight: '1.6' }}><span>UBa22PH003:</span>ALEMBOM KETILLA </p>
+
+
                     <p style={{ margin: '0', lineHeight: '1.6' }}>STILL TO BE SAID</p>
+
                 </div>
                 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end' }}>
                     <h4 style={{ margin: '0', lineHeight: '1.6' }}>Course-Info:</h4>
                     <p style={{ margin: '0', lineHeight: '1.6' }}>Course Supervisor: Mr. MBIETCHEU CAESAR</p>
                     <p style={{ margin: '0', lineHeight: '1.6' }}>Course Title: Web Programming</p>
-                    <p style={{ margin: '0', lineHeight: '1.6' }}>Course Code: CS101</p>
+                    <p style={{ margin: '0', lineHeight: '1.6' }}>Course Code: CENP4107</p>
                 </div>
             </div>
             <div style={{

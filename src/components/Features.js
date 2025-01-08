@@ -17,7 +17,8 @@ function Features() {
             id: 3, 
             title: 'Customizable Annotations', 
             description: 'Utilize a variety of annotation tools and options to tailor your annotations to specific project needs, ensuring precision and clarity.' 
-        }
+        },
+        
     ];
 
     const [displayedFeatures, setDisplayedFeatures] = useState([]);
