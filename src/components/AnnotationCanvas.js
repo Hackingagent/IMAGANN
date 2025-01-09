@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import axios from 'axios';
 
 // Define a set of colors for the bounding boxes
 const colors = ['red', 'blue', 'green', 'orange', 'yellow'];
@@ -95,6 +96,54 @@ const AnnotationCanvas = ({ image, labels, annotations, onAddAnnotation, onDelet
     e.preventDefault(); // Prevent default to allow drop
   };
 
+  const handleSaveImage = async () => {
+  const projectId = localStorage.getItem('projectId'); // Get the project ID from local storage
+  if (!projectId) {
+    console.error('Project ID is null');
+    return;
+  }
+
+  const canvas = document.createElement('canvas');
+  const ctx = canvas.getContext('2d');
+  const img = new Image();
+  img.src = image;
+
+  // Wait for the image to load
+  await new Promise((resolve) => {
+    img.onload = resolve;
+  });
+
+  canvas.width = img.width;
+  canvas.height = img.height;
+  ctx.drawImage(img, 0, 0);
+
+  annotations.forEach((annotation) => {
+    ctx.beginPath();
+    ctx.strokeStyle = annotation.color;
+    ctx.lineWidth = 2;
+    ctx.rect(annotation.x, annotation.y, annotation.width, annotation.height);
+    ctx.stroke();
+
+    ctx.font = '14px Arial';
+    ctx.fillStyle = annotation.color;
+    ctx.fillText(annotation.label, annotation.x, annotation.y - 4);
+  });
+
+  canvas.toBlob((blob) => {
+    const formData = new FormData();
+    formData.append('image', blob);
+    formData.append('projectId', projectId);
+
+    axios.post(`http://localhost:8000/api/projects/images`, formData)
+      .then((response) => {
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  });
+};
+
   return (
     <div>
       <select onChange={handleLabelChange}>
@@ -189,6 +238,7 @@ const AnnotationCanvas = ({ image, labels, annotations, onAddAnnotation, onDelet
           />
         )}
       </div>
+      <button onClick={handleSaveImage}>Save Image</button>
     </div>
   );
 };

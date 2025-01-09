@@ -5,8 +5,9 @@ import ImageUploader from './ImageUploader';
 import AnnotationCanvas from './AnnotationCanvas';
 import { useLocation } from 'react-router-dom';
 import axios from 'axios';
+import ProjectImages from './ProjectImages';
 
-const AnnotationPlatform = () => {
+const AnnotationPlatform = ({ projectId }) => {
   const [labels, setLabels] = useState([]);
   const [images, setImages] = useState([]);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -192,6 +193,8 @@ const AnnotationPlatform = () => {
         <button onClick={handleExportPascalVOC}>Export to Pascal VOC</button>
         <button onClick={handleExportCOCO}>Export to COCO</button>
       </div>
+
+      <ProjectImages projectId={projectId}/>
     </div>
   );
 

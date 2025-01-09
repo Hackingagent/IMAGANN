@@ -9,8 +9,11 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import ProjectForm from './components/ProjectForm';
 import AuthForm from './components/AuthForm';
 import ProtectedRoute from './components/ProtectedRoute';
+import LogoutButton from './components/LogoutButton';
+
 
 function App() {
+  const projectId = localStorage.getItem('projectId');
   return (
     <Router>
       <Header />
@@ -23,10 +26,11 @@ function App() {
         } />
         <Route path="/authentication" element={<AuthForm />}/>
         <Route
-          path="/annotation-platform"
+          path="/annotation-platform/:projectId"
           element={
             <ProtectedRoute>
-              <AnnotationPlatform />
+              <LogoutButton />
+              <AnnotationPlatform projectId={projectId}/>
             </ProtectedRoute>
           }
         />
@@ -34,7 +38,9 @@ function App() {
           path="/project-form"
           element={
             <ProtectedRoute>
+              <LogoutButton />
               <ProjectForm />
+              
             </ProtectedRoute>
           }
         />

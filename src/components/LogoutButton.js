@@ -9,12 +9,31 @@ const LogoutButton = () => {
 
   const handleLogout = async () => {
     try {
-      const response = await axios.post('http://localhost:8000/api/logout');
+      const token = localStorage.getItem('token');
+      if (!token) {
+        console.error('No token found');
+        return;
+      }
+  
+      const response = await axios.post('http://localhost:8000/api/logout', {}, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+  
       console.log(response.data);
-      localStorage.removeItem('isAuthenticated');
+      localStorage.removeItem('token');
       navigate('/authentication', { replace: true });
     } catch (error) {
-      console.error(error);
+      if (error.response.status === 401) {
+        console.error('Unauthorized');
+        alert('You are not authorized to access this resource.');
+      } else if (error.response.status === 500) {
+        console.error('Internal Server Error');
+        alert('Internal Server Error. Please try again later.');
+      } else {
+        console.error(error);
+      }
     }
   };
 

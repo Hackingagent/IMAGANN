@@ -1,14 +1,18 @@
-// ProtectedRoute.js
+// components/ProtectedRoute.js
+
 import React from 'react';
 import { Navigate, useLocation } from 'react-router-dom';
+import axios from 'axios';
 
 const ProtectedRoute = ({ children }) => {
   const location = useLocation();
-  const isAuthenticated = localStorage.getItem('isAuthenticated'); // Replace with your authentication logic
+  const token = localStorage.getItem('token');
 
-  if (!isAuthenticated) {
-    return <Navigate to="/authentication" state={{ from: location }} replace />;
+  if (!token) {
+    return <Navigate to="/authentication" replace />;
   }
+
+  axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 
   return children;
 };
